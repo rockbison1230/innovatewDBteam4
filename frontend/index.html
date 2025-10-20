@@ -1,3 +1,70 @@
 <!doctype html>
-<html><head><meta charset="utf-8"><title>Path Maker</title></head>
-<body><h1>Frontend is live</h1></body></html>
+<html>
+    <head><meta charset="utf-8"><title>Path Maker</title>
+        <script type = module src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+        <script src="script.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    </head>
+<body>
+    <h1>Frontend is live</h1>
+
+    <main class="max-w-3xl mx-auto p-6">
+  <h1 class="text-3xl font-bold mb-8 text-center text-gray-900">Find your perfect scholarship</h1>
+
+  <form id="search-form" class="space-y-6" onsubmit="return false">
+    <div class="flex flex-col">
+      <label for="origin" class="mb-2 font-semibold text-gray-700">Nationality:</label>
+      <input id="Nationality" type="text" required placeholder="e.g. US"
+        class="rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <div class="flex flex-col">
+      <label for="Academics" class="mb-2 font-semibold text-gray-700">Academics(GPA):</label>
+      <input id="Academics" type="text"required placeholder="e.g. 4.0"
+        class="rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <div class="flex flex-col">
+      <label for="voluteer" class="mb-2 font-semibold text-gray-700">voluteer work</label>
+      <input id="voluteer" type="text" required
+        class="rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <div class="flex flex-col">
+      <label for="TestScore" class="mb-2 font-semibold text-gray-700">SAT/ACT:</label>
+      <input id="TestScore" type="number" required
+        class="rounded-md border border-gray-300 px-4 py-2 w-24 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <div class="flex flex-col">
+      <label for="Major" class="mb-2 font-semibold text-gray-700">Major</label>
+      <input id="Major" type="text" min="0" step="1" placeholder="e.g Computer Science:"
+        class="rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+     <div class="flex flex-col">
+      <label for="schools" class="mb-2 font-semibold text-gray-700">Dream School</label>
+      <input id="schools" type="text" min="0" step="1" placeholder="e.g FMU"
+        class="rounded-md border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <div class="flex flex-col">
+      <label for="Extracurricular" class="mb-2 font-semibold text-gray-700">Results to Show:</label>
+      <input id="Extracurricular" type="number" min="1" max="10" value="5"
+        class="rounded-md border border-gray-300 px-4 py-2 w-24 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <button id="submit" 
+      class="w-full bg-[#0E2525] text-white font-semibold py-3 rounded-md shadow-md hover:bg-[#0E2525]/80 transition focus:outline-none focus:ring-4 focus:bg-[#0E2525]/90">
+      Search Offers
+    </button>
+  </form>
+
+  <section id="results" class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div id="markdown-output"></div>
+  </section>
+</main>
+<script src = "/survey.js"></script>
+
+
+</body></html>
