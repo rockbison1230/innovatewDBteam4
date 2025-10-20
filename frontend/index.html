@@ -1,14 +1,16 @@
 <!doctype html>
 <html>
-    <head><meta charset="utf-8"><title>Path Maker</title>
-        <script type = module src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-        <script src="script.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    </head>
+<head>
+    <meta charset="utf-8">
+    <title>Momentum</title>
+    <script type=module src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+
 <body>
-    <h1>Frontend is live</h1>
-
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -43,7 +45,7 @@
         }
 
         body {
-            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+            font-family: Unna, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
         }
 
         .serif {
@@ -83,213 +85,207 @@
             pointer-events: none;
         }
     </style>
-</head>
+    </head>
 
-<body class="bg-alabaster text-gray-800 selection:bg-primary selection:text-white">
-    <!-- Navbar -->
-    <header class="absolute top-0 left-0 w-full z-20">
-        <nav class="max-w-7xl mx-auto px-6 lg:px-8 py-5 flex items-center justify-between">
-            <a class="flex items-center gap-2" href="#">
-                <span
-                    class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-white shadow-soft">M</span>
-                <span class="font-semibold text-gray-900">Momentum</span>
-            </a>
-            <div class="hidden sm:flex items-center gap-6">
-                <a href="#features" class="text-gray-700 hover:text-primary">How it works</a>
-                <a href="#trust" class="text-gray-700 hover:text-primary">Why Momentum</a>
-                <a href="./userLogin.html"
-                    class="rounded-full bg-primary px-5 py-2.5 text-white font-semibold shadow-soft hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
-                    Start planning
+    <body class="bg-alabaster text-gray-800 selection:bg-primary selection:text-white">
+        <!-- Navbar -->
+        <header class="absolute top-0 left-0 w-full z-20">
+            <nav class="max-w-7xl mx-auto px-6 lg:px-8 py-5 flex items-center justify-between">
+                <a href="index.html" class="flex items-center gap-2">
+                    <img src="./assets/momentumLogo.svg" alt="Momentum Logo" class="h-[7.5rem]" />
                 </a>
-            </div>
-            <a href="./userLogin.html" class="sm:hidden rounded-full bg-primary px-4 py-2 text-white">Start</a>
-        </nav>
-    </header>
-
-    <!-- Hero -->
-    <main class="relative isolate min-h-[92vh] flex items-center">
-        <div class="hero-bg grid-fade"></div>
-        <div class="blob w-[42rem] h-[42rem] -top-28 -left-24"></div>
-        <div class="blob w-[32rem] h-[32rem] top-20 -right-20"
-            style="background: radial-gradient(circle at 30% 30%, var(--olive), transparent 60%), conic-gradient(from 180deg at 50% 50%, var(--primary), var(--indigo), var(--primary)); opacity:.18">
-        </div>
-
-        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-28 pb-16 w-full">
-            <div class="grid lg:grid-cols-12 items-center gap-10">
-                <!-- Text -->
-                <div class="lg:col-span-6">
-                    <h1 class="serif text-5xl sm:text-6xl font-bold leading-tight text-gray-900">
-                        Plan for anything, <span
-                            class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-indigoBrand to-olive">with
-                            Momentum</span>
-                    </h1>
-                    <p class="mt-5 text-lg text-gray-600 max-w-xl">
-                        A calm, guided way to build your scholarship and college finance plan. Less dashboards, more
-                        clarity.
-                    </p>
-                    <div class="mt-8 flex items-center gap-3">
-                        <a href="./userLogin.html"
-                            class="rounded-full bg-primary px-6 py-3 text-white font-semibold shadow-soft hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
-                            Start planning
-                        </a>
-                        <a href="#features"
-                            class="inline-flex items-center gap-2 font-semibold text-gray-800 hover:text-primary">
-                            Learn more
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 5l7 7-7 7" />
-                            </svg>
-                        </a>
-                    </div>
-
-                    <!-- Trust indicators -->
-                    <div id="trust" class="mt-10 flex items-center gap-6 text-sm text-gray-500">
-                        <div class="inline-flex items-center gap-2">
-                            <span class="h-2 w-2 rounded-full bg-olive"></span> Private by default
-                        </div>
-                        <div class="inline-flex items-center gap-2">
-                            <span class="h-2 w-2 rounded-full bg-indigoBrand"></span> Built for students
-                        </div>
-                        <div class="inline-flex items-center gap-2">
-                            <span class="h-2 w-2 rounded-full bg-primary"></span> Human-readable plans
-                        </div>
-                    </div>
+                <div class="hidden sm:flex items-center gap-6">
+                    <a href="#features" class="text-gray-700 hover:text-primary">How it works</a>
+                    <a href="./userLogin.html"
+                        class="rounded-full bg-primary px-5 py-2.5 text-white font-semibold shadow-soft hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+                        Start planning
+                    </a>
                 </div>
+                <a href="./userLogin.html" class="sm:hidden rounded-full bg-primary px-4 py-2 text-white">Start</a>
+            </nav>
+        </header>
 
-                <!-- Hero preview card -->
-                <div class="lg:col-span-6">
-                    <div class="relative">
-                        <div
-                            class="absolute -inset-4 bg-gradient-to-tr from-primary/10 via-indigoBrand/10 to-olive/10 rounded-[2rem] blur-2xl">
+        <!-- Hero -->
+        <main class="relative isolate min-h-[92vh] flex items-center">
+            <div class="hero-bg grid-fade"></div>
+            <div class="blob w-[42rem] h-[42rem] -top-28 -left-24"></div>
+            <div class="blob w-[32rem] h-[32rem] top-20 -right-20"
+                style="background: radial-gradient(circle at 30% 30%, var(--olive), transparent 60%), conic-gradient(from 180deg at 50% 50%, var(--primary), var(--indigo), var(--primary)); opacity:.18">
+            </div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-28 pb-16 w-full">
+                <div class="grid lg:grid-cols-12 items-center gap-10">
+                    <!-- Text -->
+                    <div class="lg:col-span-6">
+                        <h1 class="serif text-5xl sm:text-6xl font-bold leading-tight text-gray-900">
+                            Plan for anything, <br>
+                            with<span
+                                class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-indigoBrand to-olive">
+                                Momentum</span>
+                        </h1>
+                        <p class="mt-5 text-lg text-gray-600 max-w-xl">
+                            Stop wasting your time combing through scholarship sites. Begin
+                        </p>
+                        <div class="mt-8 flex items-center gap-3">
+                            <a href="./userLogin.html"
+                                class="rounded-full bg-primary px-6 py-3 text-white font-semibold shadow-soft hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+                                Start planning
+                            </a>
+                            <a href="#features"
+                                class="inline-flex items-center gap-2 font-semibold text-gray-800 hover:text-primary">
+                                Learn more
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
+                                </svg>
+                            </a>
                         </div>
-                        <div class="relative rounded-[2rem] p-6 sm:p-8 bg-white/70 backdrop-blur-12 shadow-soft">
-                            <div class="flex items-center justify-between">
-                                <p class="font-semibold text-gray-800">Projected cost</p>
-                                <span class="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary">Preview</span>
-                            </div>
-                            <p class="mt-3 text-3xl font-bold text-gray-900">$18,420 <span
-                                    class="text-sm font-medium text-gray-500">per year</span></p>
 
-                            <div class="mt-6 relative">
-                                <div class="h-2 w-full rounded-full bg-gray-100 overflow-hidden">
-                                    <div class="h-full w-2/3 bg-gradient-to-r from-primary via-indigoBrand to-olive">
-                                    </div>
-                                </div>
-                                <div class="mt-4 grid grid-cols-3 gap-4 text-sm">
-                                    <div class="rounded-2xl p-4 bg-white/80">
-                                        <p class="text-gray-500">Scholarships</p>
-                                        <p class="font-semibold text-primary">$7,500</p>
-                                    </div>
-                                    <div class="rounded-2xl p-4 bg-white/80">
-                                        <p class="text-gray-500">Grants</p>
-                                        <p class="font-semibold text-indigoBrand">$3,200</p>
-                                    </div>
-                                    <div class="rounded-2xl p-4 bg-white/80">
-                                        <p class="text-gray-500">Loans</p>
-                                        <p class="font-semibold text-olive">$7,720</p>
-                                    </div>
-                                </div>
-                                <p class="mt-5 text-xs text-gray-500">
-                                    Numbers are examples. Your plan calculates in real time after you start.
-                                </p>
+                        <!-- Trust indicators -->
+                        <div id="trust" class="mt-10 flex items-center gap-6 text-sm text-gray-500">
+                            <div class="inline-flex items-center gap-2">
+                                <span class="h-2 w-2 rounded-full bg-olive"></span> Private by default
+                            </div>
+                            <div class="inline-flex items-center gap-2">
+                                <span class="h-2 w-2 rounded-full bg-indigoBrand"></span> Built for students
+                            </div>
+                            <div class="inline-flex items-center gap-2">
+                                <span class="h-2 w-2 rounded-full bg-primary"></span> Human-readable plans
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- End card -->
-            </div>
-        </div>
-    </main>
 
-    <!-- Features -->
-    <section id="features" class="relative py-20 sm:py-24">
-        <div class="absolute inset-x-0 -top-10 h-24 bg-gradient-to-b from-transparent to-black/[.01]"></div>
-        <div class="max-w-6xl mx-auto px-6 lg:px-8">
-            <div class="mx-auto max-w-2xl text-center">
-                <h2 class="text-base font-semibold leading-7 text-primary">How it works</h2>
-                <p class="mt-2 text-3xl serif font-bold tracking-tight text-gray-900">A smooth three step path</p>
-                <p class="mt-4 text-gray-600">We guide you with simple prompts and clear outputs. No clutter.</p>
-            </div>
+                    <!-- Hero preview card -->
+                    <div class="lg:col-span-6">
+                        <div class="relative">
+                            <div
+                                class="absolute -inset-4 bg-gradient-to-tr from-primary/10 via-indigoBrand/10 to-olive/10 rounded-[2rem] blur-2xl">
+                            </div>
+                            <div class="relative rounded-[2rem] p-6 sm:p-8 bg-white/70 backdrop-blur-12 shadow-soft">
+                                <div class="flex items-center justify-between">
+                                    <p class="font-semibold text-gray-800">Projected cost</p>
+                                    <span
+                                        class="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary">Preview</span>
+                                </div>
+                                <p class="mt-3 text-3xl font-bold text-gray-900">$18,420 <span
+                                        class="text-sm font-medium text-gray-500">per year</span></p>
 
-            <!-- Timeline -->
-            <div class="mt-14 relative">
-                <svg class="absolute left-0 right-0 mx-auto -z-10" width="100%" height="320" viewBox="0 0 1200 320"
-                    preserveAspectRatio="none" aria-hidden="true">
-                    <path d="M 60 300 C 300 80, 900 560, 1140 120" fill="none" stroke="url(#g1)" stroke-width="6"
-                        stroke-linecap="round" />
-                    <defs>
-                        <linearGradient id="g1" x1="0" x2="1">
-                            <stop offset="0%" stop-color="#004aad" />
-                            <stop offset="60%" stop-color="#1800ad" />
-                            <stop offset="100%" stop-color="#60801f" />
-                        </linearGradient>
-                    </defs>
-                </svg>
-
-                <div class="grid sm:grid-cols-3 gap-6">
-                    <div class="rounded-3xl p-6 bg-white shadow-soft">
-                        <div class="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
-                            <span class="text-primary font-bold">1</span>
+                                <div class="mt-6 relative">
+                                    <div class="h-2 w-full rounded-full bg-gray-100 overflow-hidden">
+                                        <div
+                                            class="h-full w-2/3 bg-gradient-to-r from-primary via-indigoBrand to-olive">
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 grid grid-cols-3 gap-4 text-sm">
+                                        <div class="rounded-2xl p-4 bg-white/80">
+                                            <p class="text-gray-500">Scholarships</p>
+                                            <p class="font-semibold text-primary">$7,500</p>
+                                        </div>
+                                        <div class="rounded-2xl p-4 bg-white/80">
+                                            <p class="text-gray-500">Grants</p>
+                                            <p class="font-semibold text-indigoBrand">$3,200</p>
+                                        </div>
+                                        <div class="rounded-2xl p-4 bg-white/80">
+                                            <p class="text-gray-500">Loans</p>
+                                            <p class="font-semibold text-olive">$7,720</p>
+                                        </div>
+                                    </div>
+                                    <p class="mt-5 text-xs text-gray-500">
+                                        Numbers are examples. Your plan calculates in real time after you start.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <h3 class="mt-4 font-semibold text-gray-900">Create your profile</h3>
-                        <p class="mt-2 text-gray-600 text-sm">Tell us school, state, goals and a few financial basics.
-                        </p>
                     </div>
-                    <div class="rounded-3xl p-6 bg-white shadow-soft">
-                        <div class="h-10 w-10 rounded-xl bg-indigoBrand/10 flex items-center justify-center">
-                            <span class="text-indigoBrand font-bold">2</span>
-                        </div>
-                        <h3 class="mt-4 font-semibold text-gray-900">Get AI insights</h3>
-                        <p class="mt-2 text-gray-600 text-sm">We cross match scholarships and aid that actually fit you.
-                        </p>
-                    </div>
-                    <div class="rounded-3xl p-6 bg-white shadow-soft">
-                        <div class="h-10 w-10 rounded-xl bg-olive/10 flex items-center justify-center">
-                            <span class="text-olive font-bold">3</span>
-                        </div>
-                        <h3 class="mt-4 font-semibold text-gray-900">See your plan</h3>
-                        <p class="mt-2 text-gray-600 text-sm">A readable plan with next steps, not a maze of charts.</p>
-                    </div>
+                    <!-- End card -->
                 </div>
             </div>
-        </div>
-    </section>
+        </main>
 
-    <!-- Footer -->
-    <footer class="py-10">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
-            <div class="border-t border-black/5 pt-6 text-center text-sm text-gray-500">
-                © 2025 Momentum. All rights reserved.
+        <!-- Features -->
+        <section id="features" class="relative py-20 sm:py-24">
+            <div class="absolute inset-x-0 -top-10 h-24 bg-gradient-to-b from-transparent to-black/[.01]"></div>
+            <div class="max-w-6xl mx-auto px-6 lg:px-8">
+                <div class="mx-auto max-w-2xl text-center">
+                    <h2 class="text-base font-semibold leading-7 text-primary">How it works</h2>
+                    <p class="mt-2 text-3xl serif font-bold tracking-tight text-gray-900">A smooth three step path</p>
+                    <p class="mt-4 text-gray-600">We guide you with simple prompts and clear outputs. No clutter.</p>
+                </div>
+
+                <!-- Timeline -->
+                <div class="mt-14 relative">
+                    <svg class="absolute left-0 right-0 mx-auto -z-10" width="100%" height="320" viewBox="0 0 1200 320"
+                        preserveAspectRatio="none" aria-hidden="true">
+                        <path d="M 60 300 C 300 80, 900 560, 1140 120" fill="none" stroke="url(#g1)" stroke-width="6"
+                            stroke-linecap="round" />
+                        <defs>
+                            <linearGradient id="g1" x1="0" x2="1">
+                                <stop offset="0%" stop-color="#004aad" />
+                                <stop offset="60%" stop-color="#1800ad" />
+                                <stop offset="100%" stop-color="#60801f" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+
+                    <div class="grid sm:grid-cols-3 gap-6">
+                        <div class="rounded-3xl p-6 bg-white shadow-soft">
+                            <div class="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                                <span class="text-primary font-bold">1</span>
+                            </div>
+                            <h3 class="mt-4 font-semibold text-gray-900">Create your profile</h3>
+                            <p class="mt-2 text-gray-600 text-sm">Tell us school, state, goals and a few financial
+                                basics.
+                            </p>
+                        </div>
+                        <div class="rounded-3xl p-6 bg-white shadow-soft">
+                            <div class="h-10 w-10 rounded-xl bg-indigoBrand/10 flex items-center justify-center">
+                                <span class="text-indigoBrand font-bold">2</span>
+                            </div>
+                            <h3 class="mt-4 font-semibold text-gray-900">Get AI insights</h3>
+                            <p class="mt-2 text-gray-600 text-sm">We cross match scholarships and aid that actually fit
+                                you.
+                            </p>
+                        </div>
+                        <div class="rounded-3xl p-6 bg-white shadow-soft">
+                            <div class="h-10 w-10 rounded-xl bg-olive/10 flex items-center justify-center">
+                                <span class="text-olive font-bold">3</span>
+                            </div>
+                            <h3 class="mt-4 font-semibold text-gray-900">See your plan</h3>
+                            <p class="mt-2 text-gray-600 text-sm">A readable plan with next steps, not a maze of charts.
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </footer>
+        </section>
 
-    <script>
-        // Smooth scroll for "Learn more"
-        document.querySelectorAll('a[href^="#"]').forEach(a => {
-            a.addEventListener('click', e => {
-                const id = a.getAttribute('href');
-                if (id.length > 1) {
-                    e.preventDefault();
-                    document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
-                }
+
+
+        <script>
+            // Smooth scroll for "Learn more"
+            document.querySelectorAll('a[href^="#"]').forEach(a => {
+                a.addEventListener('click', e => {
+                    const id = a.getAttribute('href');
+                    if (id.length > 1) {
+                        e.preventDefault();
+                        document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                });
             });
-        });
-    </script>
+        </script>
+    </body>
+
+
+    </form>
+
+    <section id="results" class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div id="markdown-output"></div>
+    </section>
+    </main>
+    <script src="/survey.js"></script>
+
+
 </body>
 
-    <button id="submit" 
-      class="w-full bg-[#0E2525] text-white font-semibold py-3 rounded-md shadow-md hover:bg-[#0E2525]/80 transition focus:outline-none focus:ring-4 focus:bg-[#0E2525]/90">
-      Search Offers
-    </button>
-  </form>
-
-  <section id="results" class="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-    <div id="markdown-output"></div>
-  </section>
-</main>
-<script src = "/survey.js"></script>
-
-
-</body></html>
+</html>
