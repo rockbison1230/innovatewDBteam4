@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Loan Recommender</title>
+
+  <!-- ✅ Include Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-900">
+  <header class="p-4 bg-white shadow">
+    <h1 class="text-2xl font-bold text-center">AI Loan Recommender</h1>
+  </header>
+
+  <main class="p-6">
+    <!-- This is your loan recommender section -->
+    <section id="ai-loan-rec" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Loan cards will be injected here -->
+    </section>
+  </main>
+
+  <script src="loanData.js"></script>
+  <script src="aiLoanRecommender.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      initLoanRecommender();
+    });
+  </script>
+</body>
+</html>

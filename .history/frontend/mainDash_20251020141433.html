@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Dashboard</title>
+
+  <!-- Inter font (the CSS uses Inter) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Your stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/b99e675b6e.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Dashboard</h1>
+      <p>Welcome — here are your recommendations and quick links.</p>
+    </header>
+
+    <main class="grid">
+      <!-- LEFT: Sidebar -->
+      <aside class="sidebar" aria-label="Primary">
+        <div class="brand">SIDEBAR</div>
+
+        <nav aria-label="Main navigation">
+          <ul>
+            <li><a href="#home" class="active"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#profile"><i class="fas fa-user"></i> Profile</a></li>
+            <li><a href="#about"><i class="fas fa-address-card"></i> About</a></li>
+            <li><a href="#portfolio"><i class="fas fa-project-diagram"></i> Portfolio</a></li>
+            <li><a href="#blogs"><i class="fas fa-blog"></i> Blogs</a></li>
+            <li><a href="#contact"><i class="fas fa-address-book"></i> Contact</a></li>
+            <li><a href="#map"><i class="fas fa-map-pin"></i> Map</a></li>
+          </ul>
+        </nav>
+
+        <div class="divider" aria-hidden="true"></div>
+
+        <div class="social_media" aria-hidden="true">
+          <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+          <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </aside>
+
+      <!-- RIGHT: Main panel -->
+      <section class="panel main">
+        <div class="main-panel-header">
+          <div>
+            <div style="font-weight:700; font-size:1.05rem;">Welcome!! Have a nice day.</div>
+            <div class="muted-small">Here's a short summary of your dashboard.</div>
+          </div>
+          <button class="btn" style="max-width:150px;">New Action</button>
+        </div>
+
+        <div class="info" style="margin-bottom:18px;">
+          <div class="panel" style="padding:12px;">
+            <p style="margin:0; color:var(--muted); font-size:0.95rem;">
+              Quick overview — changes, notifications, and suggested items live here.
+            </p>
+          </div>
+        </div>
+
+        <h3 style="margin: 0 0 12px 0;">Recommendations</h3>
+        <div class="recs-list">
+          <div class="loan-card">
+            <div class="loan-title">Personal Loan</div>
+            <div class="loan-rate">6.2% APR</div>
+            <div class="loan-meta">Up to $25,000 • 36 months</div>
+          </div>
+
+          <div class="loan-card">
+            <div class="loan-title">Auto Loan</div>
+            <div class="loan-rate">4.8% APR</div>
+            <div class="loan-meta">Up to $40,000 • 60 months</div>
+          </div>
+
+          <div class="loan-card">
+            <div class="loan-title">Home Improvement</div>
+            <div class="loan-rate">5.6% APR</div>
+            <div class="loan-meta">Fixed rate • 48 months</div>
+          </div>
+
+          <div class="loan-card">
+            <div class="loan-title">Small Business</div>
+            <div class="loan-rate">7.1% APR</div>
+            <div class="loan-meta">Lines & Term Loans</div>
+          </div>
+        </div>
+
+        <div style="margin-top:20px; color:var(--muted); font-size:0.95rem;">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. This area can be used for announcements,
+            an activity feed, or more detailed descriptions.
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Small JS to toggle 'active' on clicked nav items -->
+  <script>
+    document.querySelectorAll('.sidebar nav a').forEach(link => {
+      link.addEventListener('click', function (e) {
+        // Remove active from all then set on clicked
+        document.querySelectorAll('.sidebar nav a').forEach(a => a.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

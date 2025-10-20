@@ -1,0 +1,114 @@
+:root {
+    --accent: #2563eb;
+    --bg: #f9fafb;
+    --card: #ffffff;
+    --radius: 12px;
+    --shadow: 0 4px 15px rgba(0,0,0,0.08);
+    --muted: #6b7280;
+    --font: "Inter", Arial, sans-serif;
+  }
+  
+  /* Reset + base */
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: #fff;
+  }
+  
+  /* ----------------------------
+     Vertical Sidebar Navigation
+     ---------------------------- */
+  .sidebar {
+    width: 260px;
+    height: 100vh;
+    background: linear-gradient(180deg, #5b4b87 0%, #3f335f 100%);
+    padding: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .sidebar h2 {
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    color: rgba(255,255,255,0.95);
+  }
+  
+  .sidebar ul {
+    list-style: none;
+  }
+  
+  .sidebar ul li {
+    margin: 12px 0;
+  }
+  
+  .sidebar ul li a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  
+  .sidebar ul li a i {
+    width: 20px;
+    text-align: center;
+    color: rgba(255,255,255,0.9);
+  }
+  
+  .sidebar ul li a:hover,
+  .sidebar ul li a.active {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    transform: translateX(4px);
+  }
+  
+  /* Social icons */
+  .social_media {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
+  .social_media a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+  
+  .social_media a:hover {
+    background: rgba(255,255,255,0.25);
+  }
+  
+  /* Make icons and text smaller on narrow screens */
+  @media (max-width: 700px) {
+    .sidebar {
+      width: 200px;
+      padding: 16px;
+    }
+    .sidebar h2 {
+      font-size: 1.1rem;
+    }
+    .sidebar ul li a {
+      font-size: 0.9rem;
+    }
+  }
+  
