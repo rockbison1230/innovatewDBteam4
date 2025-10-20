@@ -1,3 +1,451 @@
-<!doctype html>
-<html><head><meta charset="utf-8"><title>Path Maker</title></head>
-<body><h1>Frontend is live</h1></body></html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Momentum — Plan for Anything, with Momentum</title>
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Unna:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <script>
+        /* Extend Tailwind with your brand colors */
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#004aad",   // deep brand blue
+                        indigoBrand: "#1800ad", // electric indigo
+                        olive: "#60801f",     // earthy olive accent
+                        alabaster: "#f7f9fc"
+                    },
+                    boxShadow: {
+                        soft: "0 10px 30px rgba(0,0,0,.08)"
+                    },
+                    backdropBlur: {
+                        12: "12px"
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --primary: #004aad;
+            --indigo: #1800ad;
+            --olive: #60801f;
+            --bg: #f7f9fc;
+            /* gentle background that will not fight your logo */
+        }
+
+        /* Type */
+        body {
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+        }
+
+        .serif {
+            font-family: Unna, Georgia, serif;
+        }
+
+        /* Soft hero background: layered gradient + subtle grid */
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            background:
+                radial-gradient(1200px 600px at 10% -10%, color-mix(in srgb, var(--primary) 18%, transparent) 0%, transparent 60%),
+                radial-gradient(900px 450px at 95% 10%, color-mix(in srgb, var(--indigo) 16%, transparent) 0%, transparent 60%),
+                linear-gradient(180deg, var(--bg) 0%, #ffffff 60%, var(--bg) 100%);
+        }
+
+        .grid-fade::before {
+            content: "";
+            position: absolute;
+            inset: -50%;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, .04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 0, 0, .04) 1px, transparent 1px);
+            background-size: 44px 44px;
+            filter: blur(2px);
+            mask-image: radial-gradient(60% 60% at 50% 30%, black 60%, transparent 100%);
+            pointer-events: none;
+        }
+
+        /* Organic blob accents */
+        .blob {
+            position: absolute;
+            filter: blur(20px);
+            opacity: .25;
+            pointer-events: none;
+            background: conic-gradient(from 140deg at 50% 50%, var(--primary), var(--indigo), var(--primary));
+            border-radius: 999px;
+            mix-blend-mode: multiply;
+        }
+
+        /* Slide-over easing */
+        .slide-enter {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+
+        .slide-enter-active {
+            transform: translateX(0);
+            opacity: 1;
+            transition: transform .35s cubic-bezier(.2, .8, .2, 1), opacity .25s;
+        }
+
+        .slide-exit {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .slide-exit-active {
+            transform: translateX(100%);
+            opacity: 0;
+            transition: transform .3s cubic-bezier(.2, .8, .2, 1), opacity .2s;
+        }
+    </style>
+</head>
+
+<body class="bg-alabaster text-gray-800 selection:bg-primary selection:text-white">
+    <!-- Navbar -->
+    <header class="absolute top-0 left-0 w-full z-20">
+        <nav class="max-w-7xl mx-auto px-6 lg:px-8 py-5 flex items-center justify-between">
+            <a class="flex items-center gap-2" href="#">
+                <!-- Placeholder logo mark you can replace with your SVG -->
+                <span
+                    class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-white shadow-soft">M</span>
+                <span class="font-semibold text-gray-900">Momentum</span>
+            </a>
+            <div class="hidden sm:flex items-center gap-6">
+                <a href="#features" class="text-gray-700 hover:text-primary">How it works</a>
+                <a href="#trust" class="text-gray-700 hover:text-primary">Why Momentum</a>
+                <button id="openPlanner"
+                    class="rounded-full bg-primary px-5 py-2.5 text-white font-semibold shadow-soft hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+                    Start planning
+                </button>
+            </div>
+            <button id="openPlannerSm" class="sm:hidden rounded-full bg-primary px-4 py-2 text-white">Start</button>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <main class="relative isolate min-h-[92vh] flex items-center">
+        <div class="hero-bg grid-fade"></div>
+        <!-- blobs -->
+        <div class="blob w-[42rem] h-[42rem] -top-28 -left-24"></div>
+        <div class="blob w-[32rem] h-[32rem] top-20 -right-20"
+            style="background: radial-gradient(circle at 30% 30%, var(--olive), transparent 60%), conic-gradient(from 180deg at 50% 50%, var(--primary), var(--indigo), var(--primary)); opacity:.18">
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 pt-28 pb-16 w-full">
+            <div class="grid lg:grid-cols-12 items-center gap-10">
+                <!-- Copy -->
+                <div class="lg:col-span-6">
+                    <h1 class="serif text-5xl sm:text-6xl font-bold leading-tight text-gray-900">
+                        Plan for anything, <span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-indigoBrand to-olive">with
+                            Momentum</span>
+                    </h1>
+                    <p class="mt-5 text-lg text-gray-600 max-w-xl">
+                        A calm, guided way to build your scholarship and college finance plan. Less dashboards, more
+                        clarity.
+                    </p>
+                    <div class="mt-8 flex items-center gap-3">
+                        <button id="openPlanner2"
+                            class="rounded-full bg-primary px-6 py-3 text-white font-semibold shadow-soft hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+                            Start planning
+                        </button>
+                        <a href="#features"
+                            class="inline-flex items-center gap-2 font-semibold text-gray-800 hover:text-primary">
+                            Learn more
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Trust row -->
+                    <div id="trust" class="mt-10 flex items-center gap-6 text-sm text-gray-500">
+                        <div class="inline-flex items-center gap-2">
+                            <span class="h-2 w-2 rounded-full bg-olive"></span> Private by default
+                        </div>
+                        <div class="inline-flex items-center gap-2">
+                            <span class="h-2 w-2 rounded-full bg-indigoBrand"></span> Built for students
+                        </div>
+                        <div class="inline-flex items-center gap-2">
+                            <span class="h-2 w-2 rounded-full bg-primary"></span> Human-readable plans
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero card: soft, non blocky -->
+                <div class="lg:col-span-6">
+                    <div class="relative">
+                        <div
+                            class="absolute -inset-4 bg-gradient-to-tr from-primary/10 via-indigoBrand/10 to-olive/10 rounded-[2rem] blur-2xl">
+                        </div>
+                        <div class="relative rounded-[2rem] p-6 sm:p-8 bg-white/70 backdrop-blur-12 shadow-soft">
+                            <div class="flex items-center justify-between">
+                                <p class="font-semibold text-gray-800">Projected cost</p>
+                                <span class="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary">Preview</span>
+                            </div>
+                            <p class="mt-3 text-3xl font-bold text-gray-900">$18,420 <span
+                                    class="text-sm font-medium text-gray-500">per year</span></p>
+
+                            <!-- Flow line -->
+                            <div class="mt-6 relative">
+                                <div class="h-2 w-full rounded-full bg-gray-100 overflow-hidden">
+                                    <div class="h-full w-2/3 bg-gradient-to-r from-primary via-indigoBrand to-olive">
+                                    </div>
+                                </div>
+                                <div class="mt-4 grid grid-cols-3 gap-4 text-sm">
+                                    <div class="rounded-2xl p-4 bg-white/80">
+                                        <p class="text-gray-500">Scholarships</p>
+                                        <p class="font-semibold text-primary">$7,500</p>
+                                    </div>
+                                    <div class="rounded-2xl p-4 bg-white/80">
+                                        <p class="text-gray-500">Grants</p>
+                                        <p class="font-semibold text-indigoBrand">$3,200</p>
+                                    </div>
+                                    <div class="rounded-2xl p-4 bg-white/80">
+                                        <p class="text-gray-500">Loans</p>
+                                        <p class="font-semibold text-olive">$7,720</p>
+                                    </div>
+                                </div>
+
+                                <p class="mt-5 text-xs text-gray-500">
+                                    Numbers are examples. Your plan calculates in real time after you start.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end hero card -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Features: curved path layout to avoid blocky feel -->
+    <section id="features" class="relative py-20 sm:py-24">
+        <div class="absolute inset-x-0 -top-10 h-24 bg-gradient-to-b from-transparent to-black/[.01]"></div>
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="mx-auto max-w-2xl text-center">
+                <h2 class="text-base font-semibold leading-7 text-primary">How it works</h2>
+                <p class="mt-2 text-3xl serif font-bold tracking-tight text-gray-900">A smooth three step path</p>
+                <p class="mt-4 text-gray-600">We guide you with simple prompts and clear outputs. No clutter.</p>
+            </div>
+
+            <!-- Curved timeline -->
+            <div class="mt-14 relative">
+                <svg class="absolute left-0 right-0 mx-auto -z-10" width="100%" height="320" viewBox="0 0 1200 320"
+                    preserveAspectRatio="none" aria-hidden="true">
+                    <path d="M 60 300 C 300 80, 900 560, 1140 120" fill="none" stroke="url(#g1)" stroke-width="6"
+                        stroke-linecap="round" />
+                    <defs>
+                        <linearGradient id="g1" x1="0" x2="1">
+                            <stop offset="0%" stop-color="#004aad" />
+                            <stop offset="60%" stop-color="#1800ad" />
+                            <stop offset="100%" stop-color="#60801f" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+
+                <div class="grid sm:grid-cols-3 gap-6">
+                    <div class="rounded-3xl p-6 bg-white shadow-soft">
+                        <div class="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                            <span class="text-primary font-bold">1</span>
+                        </div>
+                        <h3 class="mt-4 font-semibold text-gray-900">Create your profile</h3>
+                        <p class="mt-2 text-gray-600 text-sm">Tell us school, state, goals and a few financial basics.
+                        </p>
+                    </div>
+                    <div class="rounded-3xl p-6 bg-white shadow-soft">
+                        <div class="h-10 w-10 rounded-xl bg-indigoBrand/10 flex items-center justify-center">
+                            <span class="text-indigoBrand font-bold">2</span>
+                        </div>
+                        <h3 class="mt-4 font-semibold text-gray-900">Get AI insights</h3>
+                        <p class="mt-2 text-gray-600 text-sm">We cross match scholarships and aid that actually fit you.
+                        </p>
+                    </div>
+                    <div class="rounded-3xl p-6 bg-white shadow-soft">
+                        <div class="h-10 w-10 rounded-xl bg-olive/10 flex items-center justify-center">
+                            <span class="text-olive font-bold">3</span>
+                        </div>
+                        <h3 class="mt-4 font-semibold text-gray-900">See your plan</h3>
+                        <p class="mt-2 text-gray-600 text-sm">A readable plan with next steps, not a maze of charts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="border-t border-black/5 pt-6 text-center text-sm text-gray-500">
+                © 2025 Momentum. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Slide-over Planner Form -->
+    <div id="plannerOverlay" class="fixed inset-0 z-[100] hidden" aria-hidden="true">
+        <!-- backdrop -->
+        <div id="overlayBg" class="absolute inset-0 bg-black/30 opacity-0 transition-opacity"></div>
+
+        <!-- panel -->
+        <aside id="panel"
+            class="absolute right-0 top-0 h-full w-full sm:max-w-md bg-white/80 backdrop-blur-12 shadow-2xl rounded-l-3xl slide-enter">
+            <div class="h-full flex flex-col">
+                <div class="px-6 py-5 border-b border-black/5 flex items-center justify-between">
+                    <h3 class="font-semibold text-gray-900">Quick start</h3>
+                    <button id="closePlanner" class="p-2 rounded-full hover:bg-black/5" aria-label="Close">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M10 8.586l4.95-4.95a1 1 0 111.414 1.415L11.414 10l4.95 4.95a1 1 0 01-1.414 1.415L10 11.414l-4.95 4.95a1 1 0 01-1.414-1.415L8.586 10l-4.95-4.95A1 1 0 115.05 3.636L10 8.586z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+
+                <form class="px-6 py-5 overflow-y-auto">
+                    <!-- Hardcoded form fields; tweak later as needed -->
+                    <div class="space-y-5">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Full name</label>
+                            <input type="text"
+                                class="mt-1 w-full rounded-xl border border-black/10 bg-white/70 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                                placeholder="Amana Martin" />
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">State</label>
+                                <select
+                                    class="mt-1 w-full rounded-xl border border-black/10 bg-white/70 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/40">
+                                    <option>Florida</option>
+                                    <option>Georgia</option>
+                                    <option>North Carolina</option>
+                                    <option>New York</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">School year</label>
+                                <select
+                                    class="mt-1 w-full rounded-xl border border-black/10 bg-white/70 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/40">
+                                    <option>Junior</option>
+                                    <option>Senior</option>
+                                    <option>First year</option>
+                                    <option>Second year</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">GPA</label>
+                                <input type="number" step="0.01" min="0" max="4"
+                                    class="mt-1 w-full rounded-xl border border-black/10 bg-white/70 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                                    placeholder="3.3" />
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Household income</label>
+                                <input type="text"
+                                    class="mt-1 w-full rounded-xl border border-black/10 bg-white/70 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                                    placeholder="$0–$30k, $30k–$60k, etc." />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Top goal</label>
+                            <select
+                                class="mt-1 w-full rounded-xl border border-black/10 bg-white/70 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/40">
+                                <option>Find scholarships I qualify for</option>
+                                <option>Understand my total cost</option>
+                                <option>Lower my loan amount</option>
+                                <option>Mix of all three</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Notes</label>
+                            <textarea rows="3"
+                                class="mt-1 w-full rounded-xl border border-black/10 bg-white/70 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                                placeholder="Anything we should factor in? Deadlines, programs, etc."></textarea>
+                        </div>
+
+                        <div class="pt-2 flex items-center justify-between">
+                            <div class="text-xs text-gray-500">Private. Stored securely to generate your plan.</div>
+                            <button type="button" id="fakeSubmit"
+                                class="rounded-full bg-gradient-to-r from-primary via-indigoBrand to-olive px-6 py-2.5 text-white font-semibold shadow-soft hover:opacity-95">
+                                Generate my plan
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        // Smooth scroll for "Learn more"
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                const id = a.getAttribute('href');
+                if (id.length > 1) {
+                    e.preventDefault();
+                    document.querySelector(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Slide-over controls
+        const openBtns = [document.getElementById('openPlanner'), document.getElementById('openPlannerSm'), document.getElementById('openPlanner2')].filter(Boolean);
+        const overlay = document.getElementById('plannerOverlay');
+        const overlayBg = document.getElementById('overlayBg');
+        const panel = document.getElementById('panel');
+        const closeBtn = document.getElementById('closePlanner');
+
+        function openPanel() {
+            overlay.classList.remove('hidden');
+            requestAnimationFrame(() => {
+                overlayBg.classList.add('opacity-100'); overlayBg.classList.remove('opacity-0');
+                panel.classList.remove('slide-enter'); panel.classList.add('slide-enter-active');
+            });
+            // focus trap start
+            setTimeout(() => closeBtn?.focus(), 350);
+        }
+        function closePanel() {
+            overlayBg.classList.remove('opacity-100'); overlayBg.classList.add('opacity-0');
+            panel.classList.remove('slide-enter-active'); panel.classList.add('slide-exit-active');
+            setTimeout(() => {
+                overlay.classList.add('hidden');
+                panel.classList.remove('slide-exit-active'); panel.classList.add('slide-enter');
+            }, 300);
+        }
+
+        openBtns.forEach(b => b.addEventListener('click', openPanel));
+        overlayBg.addEventListener('click', closePanel);
+        closeBtn.addEventListener('click', closePanel);
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !overlay.classList.contains('hidden')) closePanel(); });
+
+        // Demo submit
+        document.getElementById('fakeSubmit').addEventListener('click', () => {
+            alert('MVP mode: this would trigger your planner logic.');
+            closePanel();
+        });
+    </script>
+</body>
+
+</html>
