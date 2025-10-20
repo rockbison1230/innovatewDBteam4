@@ -1,4 +1,3 @@
-// --- Hardcoded User Profile for MVP ---
 const userProfile = {
     fullName: "Alex Chen",
     age: 18,

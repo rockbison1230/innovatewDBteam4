@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Loans Recommender</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>AI Loans</h1>
+      <p>Find the best student loans based on your academic profile.</p>
+    </header>
+
+    <main class="grid">
+      <!-- Left panel -->
+      <section class="panel" id="student-info">
+        <h2>Student Profile</h2>
+        <form id="studentForm">
+          <label>Name</label>
+          <input type="text" id="name" value="Maya Johnson" />
+
+          <label>GPA</label>
+          <input type="number" id="gpa" step="0.1" value="3.8" />
+
+          <label>Intended Colleges</label>
+          <input type="text" id="colleges" value="UCLA, UC Berkeley" />
+
+          <label>Major</label>
+          <input type="text" id="major" value="Computer Science" />
+
+          <button type="submit" class="btn">Find Loans</button>
+        </form>
+      </section>
+
+      <!-- Right panel -->
+      <section class="panel">
+        <h2>Recommended Loans</h2>
+        <div id="loanResults" class="recs-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

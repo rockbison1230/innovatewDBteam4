@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Momentum</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Unna:wght@400;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#004aad",
+                        indigoBrand: "#1800ad",
+                        olive: "#60801f",
+                        alabaster: "#f7f9fc"
+                    },
+                    boxShadow: { soft: "0 10px 30px rgba(0,0,0,.08)" },
+                    backdropBlur: { 12: "12px" }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --primary: #004aad;
+            --indigo: #1800ad;
+            --olive: #60801f;
+            --bg: #f7f9fc;
+        }
+
+        body {
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif
+        }
+
+        .serif {
+            font-family: Unna, Georgia, serif
+        }
+
+        /* background */
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            background:
+                radial-gradient(1200px 600px at 10% -10%, color-mix(in srgb, var(--primary) 18%, transparent) 0%, transparent 60%),
+                radial-gradient(900px 450px at 95% 10%, color-mix(in srgb, var(--indigo) 16%, transparent) 0%, transparent 60%),
+                linear-gradient(180deg, var(--bg) 0%, #fff 60%, var(--bg) 100%);
+        }
+
+        .blob {
+            position: absolute;
+            filter: blur(20px);
+            opacity: .22;
+            pointer-events: none;
+            background: conic-gradient(from 160deg at 50% 50%, var(--primary), var(--indigo), var(--primary));
+            border-radius: 999px;
+            mix-blend-mode: multiply;
+        }
+
+        /* view transition */
+        .view {
+            display: none;
+
+        }
+
+        .view.active {
+            display: block;
+
+        }
+
+        /* dynamic height wrapper */
+        .card-resizer {
+            height: auto;
+            transition: height .35s cubic-bezier(.2, .8, .2, 1)
+        }
+
+        /* step chips */
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .5rem .75rem;
+            border-radius: 999px;
+            background: #fff;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, .06)
+        }
+
+        .chip.active {
+            background: rgb(0 74 173 / .10)
+        }
+    </style>
+</head>
+
+<body class="bg-alabaster text-gray-800 selection:bg-primary selection:text-white">
+
+    <!-- Nav -->
+    <header class="absolute top-0 left-0 w-full z-20">
+        <nav class="max-w-7xl mx-auto px-6 lg:px-8 py-3 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <img src="./assets/momentumLogo.svg" alt="Momentum Logo" class="h-30" />
+            </a>
+
+        </nav>
+    </header>
+
+    <!-- Background -->
+    <div class="hero-bg"></div>
+    <div class="blob w-[42rem] h-[42rem] -top-28 -left-24"></div>
+    <div class="blob w-[32rem] h-[32rem] top-24 -right-20"
+        style="background: radial-gradient(circle at 30% 30%, var(--olive), transparent 60%), conic-gradient(from 180deg at 50% 50%, var(--primary), var(--indigo), var(--primary)); opacity:.16">
+    </div>
+
+    <!-- Container -->
+    <main class="relative z-10">
+        <div class="w-full max-w-5xl mx-auto px-6 lg:px-8 pt-28 pb-16">
+            <h1 class="serif text-4xl sm:text-5xl font-bold text-gray-900">Tell Us About Yourself</h1>
+            <p class="mt-3 text-gray-600 max-w-2xl">We only ask for what's needed to form your plan! You're free to edit
+                the content later.</p>
+
+            <!-- Stepper -->
+            <div class="mt-8 flex flex-wrap items-center gap-3">
+                <div class="chip active" data-step-chip="academics"><span
+                        class="h-2 w-2 rounded-full bg-primary"></span><span
+                        class="text-sm font-medium text-gray-800">Academics</span></div>
+                <div class="chip" data-step-chip="demographics"><span
+                        class="h-2 w-2 rounded-full bg-indigoBrand"></span><span
+                        class="text-sm font-medium text-gray-800">Demographics</span></div>
+                <div class="chip" data-step-chip="financial"><span class="h-2 w-2 rounded-full bg-olive"></span><span
+                        class="text-sm font-medium text-gray-800">Financial</span></div>
+                <div class="chip" data-step-chip="review"><span class="h-2 w-2 rounded-full bg-gray-500"></span><span
+                        class="text-sm font-medium text-gray-800">Review</span></div>
+            </div>
+
+            <!-- Curved card -->
+            <section class="relative mt-8">
+                <div
+                    class="absolute -inset-2 bg-gradient-to-tr from-primary/10 via-indigoBrand/10 to-olive/10 rounded-[2rem] blur-2xl">
+                </div>
+
+                <div class="relative rounded-[2rem] p-6 sm:p-8 bg-white/70 backdrop-blur-12 shadow-soft">
+                    <!-- progress -->
+                    <div class="mb-6">
+                        <div class="h-2 w-full rounded-full bg-gray-100 overflow-hidden">
+                            <div id="progressBar"
+                                class="h-full w-[0%] bg-gradient-to-r from-primary via-indigoBrand to-olive transition-width duration-300 ease-out">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- dynamic height wrapper -->
+                    <div id="cardResizer" class="card-resizer">
+                        <!-- Form -->
+                        <form id="userForm" class="space-y-6">
+                            <!-- Academics -->
+                            <div id="view-academics" class="view active" data-view="academics"
+                                aria-labelledby="label-academics">
+                                <h2 id="label-academics" class="font-semibold text-gray-900 text-lg">Academics</h2>
+                                <div class="mt-4 grid sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Full name</label>
+                                        <input name="name" type="text" placeholder="Amana Martin"
+                                            class="mt-1 w-full rounded-xl border border-black/10 bg-white/80 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                                            required />
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">School year</label>
+                                        <select name="schoolYear"
+                                            class="mt-1 w-full rounded-xl border border-black/10 bg-white/80 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                                            required>
+                                            <option value="">Select</option>
+                                            <option>First year</option>
+                                            <option>Second year</option>
+                                            <option>Junior</option>
+                                            <option>Senior</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">GPA</label>
+                                        <input name="gpa" type="number" step="0.01" min="0" max="4" placeholder="3.3"
+                                            class="mt-1 w-full rounded-xl border border-black/10 bg-white/80 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                                            required />
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Major or focus</label>
+                                        <input name="major" type="text" placeholder="Computer Science"
+                                            class="mt-1 w-full rounded-xl border border-black/10 bg-white/80 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/40" />
+                                    </div>
+                                    <div class="sm:col-span-2">
+                                        <label class="block text-sm font-medium text-gray-700">Current or desired
+                                            school</label>
+                                        <input name="school" type="text" placeholder="University of Central Florida"
+                                            class="mt-1 w-full rounded-xl border border-black/10 bg-white/80 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/40" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Demographics -->
+                            <div id="view-demographics" class="view" data-view="demographics"
+                                aria-labelledby="label-demographics">
+                                <h2 id="label-demographics" class="font-semibold text-gray-900 text-lg">Demographics
+                                </h2>
+                                <div class="mt-4 grid sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">State</label>
+                                        <select name="state"
+                                            class="mt-1 w-full rounded-xl border border-black/10 bg-white/80 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                                            required>
+                                            <option value="">Select</option>
+                                            <option>Florida</option>
+                                            <option>Georgia</option>
+                                            <option>North Carolina</option>
+                                            <option>New York</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Residency</label>
+                                        <select name="residency"
+                                            class="mt-1 w-full rounded-xl border border-black/10 bg-white/80 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/40">
+                                            <option value="">Select</option>
+                                            <option>In state</option>
+                                            <option>Out of state</option>
+                                            <option>International</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Nationality</label>
+                                        <input name="nationality" type="text" placeholder="Jamaican, American, etc."
+                                            class="mt-1 w-full rounded-xl border border-black/10 bg-white/80 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/40" />
+                                    </div>
+                                    <div class="sm:col-span-2">
+                                        <label class="block text-sm font-medium text-gray-700">Notes</label>
+                                        <textarea name="demoNotes" rows="3"
+                                            placeholder="Optional context that helps with scholarship matching"
+                                            class="mt-1 w-full rounded-xl border border-black/10 bg-white/80 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/40"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Financial -->
+                            <div id="view-financial" class="view" data-view="financial"
+                                aria-labelledby="label-financial">
+                                <h2 id="label-financial" class="font-semibold text-gray-900 text-lg">Financial</h2>
+                                <div class="mt-4 grid sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Household income</label>
+                                        <input name="incomeBand" type="text"
+                                            placeholder="$0 to $30k, $30k to $60k, etc."
+                                            class="mt-1 w-full rounded-xl border border-black/10 bg-white/80 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                                            required />
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700">Primary goal</label>
+                                        <select name="goal"
+                                            class="mt-1 w-full rounded-xl border border-black/10 bg-white/80 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                                            required>
+                                            <option value="">Select</option>
+                                            <option>Find scholarships I qualify for</option>
+                                            <option>Understand my total cost</option>
+                                            <option>Lower my loan amount</option>
+                                            <option>Mix of all three</option>
+                                        </select>
+                                    </div>
+                                    <div class="sm:col-span-2">
+                                        <label class="block text-sm font-medium text-gray-700">Other
+                                            considerations</label>
+                                        <textarea name="finNotes" rows="3"
+                                            placeholder="Deadlines, aid already received, special programs"
+                                            class="mt-1 w-full rounded-xl border border-black/10 bg-white/80 px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-primary/40"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Review -->
+                            <div id="view-review" class="view" data-view="review" aria-labelledby="label-review">
+                                <h2 id="label-review" class="font-semibold text-gray-900 text-lg">Review</h2>
+                                <p class="mt-2 text-sm text-gray-600">Check your entries. You can always edit later.</p>
+                                <div id="reviewBox" class="mt-4 grid sm:grid-cols-2 gap-4 text-sm"></div>
+                            </div>
+
+                            <!-- Actions -->
+                            <div
+                                class="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+
+                                <div class="flex items-center gap-2">
+                                    <button type="button" id="prevBtn"
+                                        class="rounded-full px-4 py-2.5 bg-gray-900 text-white font-semibold hover:opacity-95 disabled:opacity-40"
+                                        disabled>Back</button>
+                                    <button type="button" id="nextBtn"
+                                        class="rounded-full bg-primary px-5 py-2.5 text-white font-semibold shadow-soft hover:opacity-90">Next</button>
+                                    <button type="submit" id="submitBtn"
+                                        class="hidden rounded-full bg-gradient-to-r from-primary via-indigoBrand to-olive px-5 py-2.5 text-white font-semibold shadow-soft hover:opacity-95">Generate
+                                        my plan</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="sr-only" aria-live="polite" id="liveRegion"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // steps
+        const order = ["academics", "demographics", "financial", "review"];
+        const views = Object.fromEntries(order.map(k => [k, document.querySelector(`#view-${k}`)]));
+        const chips = Object.fromEntries(order.map(k => [k, document.querySelector(`[data-step-chip="${k}"]`)]));
+        const resizer = document.getElementById("cardResizer");
+        const progressBar = document.getElementById("progressBar");
+        const nextBtn = document.getElementById("nextBtn");
+        const prevBtn = document.getElementById("prevBtn");
+        const submitBtn = document.getElementById("submitBtn");
+        const form = document.getElementById("userForm");
+        const reviewBox = document.getElementById("reviewBox");
+        const live = document.getElementById("liveRegion");
+        let idx = 0;
+
+        // smoothly resize the card to the active view's height
+        function resizeTo(el) {
+            // set explicit current height to enable transition
+            resizer.style.height = `${resizer.getBoundingClientRect().height}px`;
+            // next frame: set to target height
+            requestAnimationFrame(() => {
+                const target = el.scrollHeight;
+                resizer.style.height = `${target}px`;
+                // after transition, let it go back to auto so content can grow naturally
+                resizer.addEventListener("transitionend", function onEnd() {
+                    resizer.style.height = "auto";
+                    resizer.removeEventListener("transitionend", onEnd);
+                });
+            });
+        }
+
+        function show(stepKey) {
+            const current = document.querySelector(".view.active");
+            const nextView = views[stepKey];
+
+            // activate/deactivate views
+            Object.entries(views).forEach(([k, el]) => el.classList.toggle("active", k === stepKey));
+            Object.entries(chips).forEach(([k, el]) => el.classList.toggle("active", k === stepKey));
+
+            // nav + progress
+            idx = order.indexOf(stepKey);
+            const pct = (idx / (order.length - 1)) * 100;
+            progressBar.style.width = `${pct}%`;
+            prevBtn.disabled = idx === 0;
+            const finalStep = idx === order.length - 1;
+            nextBtn.classList.toggle("hidden", finalStep);
+            submitBtn.classList.toggle("hidden", !finalStep);
+
+            // dynamic height to new content
+            resizeTo(nextView);
+
+            // focus first input in new view
+            const firstField = nextView.querySelector("input, select, textarea, button");
+            firstField?.focus();
+
+            if (stepKey === "review") buildReview();
+            live.textContent = `Showing ${stepKey}`;
+        }
+
+        // next/back
+        nextBtn.addEventListener("click", () => {
+            const next = order[Math.min(idx + 1, order.length - 1)];
+            show(next);
+        });
+        prevBtn.addEventListener("click", () => {
+            const prev = order[Math.max(idx - 1, 0)];
+            show(prev);
+        });
+
+        // chips are clickable
+        Object.entries(chips).forEach(([k, el]) => el.addEventListener("click", () => show(k)));
+
+        // review
+        function buildReview() {
+            const d = getFormValues();
+            const entries = [
+                ["Full name", d.name || "—"],
+                ["School year", d.schoolYear || "—"],
+                ["GPA", d.gpa || "—"],
+                ["Major", d.major || "—"],
+                ["School (current/desired)", d.school || "—"],
+                ["State", d.state || "—"],
+                ["Residency", d.residency || "—"],
+                ["Nationality", d.nationality || "—"],
+                ["Income", d.incomeBand || "—"],
+                ["Goal", d.goal || "—"],
+                ["Notes", [d.demoNotes, d.finNotes].filter(Boolean).join(" ") || "—"],
+            ];
+            reviewBox.innerHTML = entries.map(([k, v]) => `
+        <div class="rounded-2xl p-4 bg-white/80 border border-black/5">
+          <div class="text-gray-500">${k}</div>
+          <div class="font-semibold text-gray-900 mt-1 break-words">${v}</div>
+        </div>
+      `).join("");
+        }
+
+        function getFormValues() {
+            const fd = new FormData(form);
+            return Object.fromEntries(fd.entries());
+        }
+
+        // submit -> backend
+        form.addEventListener("submit", async e => {
+            e.preventDefault();
+            const p = getFormValues();
+            try {
+                const res = await fetch("http://localhost:8080/api/v1/plan", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        name: p.name,
+                        state: p.state,
+                        schoolYear: p.schoolYear,
+                        gpa: Number(p.gpa),
+                        incomeBand: p.incomeBand,
+                        goal: p.goal,
+                        notes: [
+                            `Major: ${p.major || ""}`,
+                            `School: ${p.school || ""}`,
+                            `Residency: ${p.residency || ""}`,
+                            `Nationality: ${p.nationality || ""}`,
+                            p.demoNotes || "",
+                            p.finNotes || ""
+                        ].filter(Boolean).join(" | ")
+                    })
+                });
+                if (!res.ok) throw new Error("Network error");
+                const json = await res.json();
+                alert(`Plan ready. Estimated per year $${json.data.totalEstimatedCostPerYear}`);
+                // location.href = "advisor.html";
+            } catch (err) {
+                alert("Could not generate plan right now");
+            }
+        });
+
+        // init: set initial height to current view so first transition is smooth
+        window.addEventListener("load", () => {
+            const initial = document.querySelector(".view.active");
+            resizer.style.height = `${initial.scrollHeight}px`;
+            // allow it to go auto after a tick so content can expand if user types
+            setTimeout(() => resizer.style.height = "auto", 350);
+        });
+    </script>
+</body>
+
+</html>
